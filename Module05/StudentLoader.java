@@ -1,11 +1,9 @@
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 import java.util.stream.Collectors;
 
@@ -44,12 +42,25 @@ import java.util.stream.Collectors;
  */
 
 public class StudentLoader {
+    private static HashMap<String, Set<String>> students = new HashMap<>();
+
+
+    public static void main(String[] args) {
+        students.put("Apple", Set.of("CS5001", "CS5002"));
+        students.put("Banana", Set.of("CS5004", "CS5008"));
+
+        try {
+            List<String> coursesList = students.entrySet().stream().map(x -> x.getKey() + " takes " + x.getValue()).toList();
+            Files.write(Path.of("courses.txt"), coursesList);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     // todo: write a program that reads
     // the courses.txt file, and links
     // all classes with the String (name) of the student
     // outputs then will be "person has completed class1 class2 etc"
     // for each student
-
 
 }

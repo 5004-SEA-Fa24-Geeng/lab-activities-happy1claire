@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /** feel free to use this template as a starting point. */
 
 public class Student extends Person {
@@ -11,6 +13,36 @@ public class Student extends Person {
     public int getId() {
         return this.id;
     }
+
+    @Override
+    public boolean equals (Object other) {
+        if (other == null) {
+            return false;
+        }
+
+        if (other.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Student otherStudent = (Student) other;
+
+        return otherStudent.getId() == this.getId() && Objects.equals(otherStudent.getName(), this.getName());
+    }
+
+//    @Override
+//    public int hashCode() {
+//        int hash = id;
+//        for (int i = 0; i < this.getName().length(); i++) {
+//            hash += this.getName().charAt(i);
+//        }
+//        return hash;
+//    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getName(), id);
+    }
+
 
     @Override
     public String toString() {
