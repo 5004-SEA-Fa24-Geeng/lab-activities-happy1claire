@@ -5,16 +5,16 @@ public class StringComparableExamples {
 
     public static void main(String[] args) {
 
-        String s1 = "aloha";
-        String s2 = "world";
-
-
-        System.out.println(s1.compareTo(s2));
+//        String s1 = "aloha";
+//        String s2 = "world";
+//
+//
+//        System.out.println(s1.compareTo(s2));
 
         System.out.println("And now a few more examples");
 
         String a = "a";
-        String b = "b";
+        String b = "A";
         String A = "A";
         String B = "B";
 
