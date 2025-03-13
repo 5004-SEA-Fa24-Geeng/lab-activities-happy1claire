@@ -46,6 +46,14 @@ public class SimpleXMLReader {
         @Override
         public void endElement(String uri, String localName, String qName) {
             // student to add
+            if (qName.equalsIgnoreCase("person")) {
+                people.add(Person.fromMap(current));
+                current = null;
+            } else {
+                if (current != null) {
+                    current.put(qName, buffer.toString());
+                }
+            }
         }
 
         @Override

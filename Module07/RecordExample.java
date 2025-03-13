@@ -8,6 +8,7 @@ public class RecordExample {
 
         System.out.println(person);
         System.out.println(student);
+        System.out.println(person.name());
 
         System.out.println(student.equals(student2));
 

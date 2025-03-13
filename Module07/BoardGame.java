@@ -1,5 +1,10 @@
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import java.util.List;
+
 public record BoardGame(String name, int id, int minPlayers, int maxPlayers, int minPlayTime,
-        int maxPlayTime, double difficulty, int rank, double averageRating, int yearPublished) {
+                        int maxPlayTime, double difficulty, int rank, double averageRating, int yearPublished) {
 
     /// Yes, you can add additional functions
     public String toStringWithInfo(GameData col) {
@@ -36,6 +41,8 @@ public record BoardGame(String name, int id, int minPlayers, int maxPlayers, int
         System.out.println(bg.equals(bg) + " " + String.valueOf(bg.hashCode() == bg2.hashCode()));
         System.out.println(bg.equals(bg2) + " " + String.valueOf(bg.hashCode() == bg2.hashCode()));
         System.out.println(bg.equals(bg3) + " " + String.valueOf(bg.hashCode() == bg3.hashCode()));
+
+        System.out.println(bg.hashCode());
 
     }
 

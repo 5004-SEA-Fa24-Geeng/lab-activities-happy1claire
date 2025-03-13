@@ -1,6 +1,8 @@
 package bg_arena_planner;
 
 import java.util.List;
+import java.util.Objects;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -212,12 +214,12 @@ public class BoardGame {
      * @param obj object to compare
      * @return true if the objects are equal, false otherwise
      */
-    @Override
-    public boolean equals(Object obj) {
-        return EqualsBuilder.reflectionEquals(this, obj, // exclude the following fields
-                List.of("minPlayers", "maxPlayers", "maxPlayTime", "minPlayTime", "difficulty",
-                        "rank", "averageRating", "yearPublished"));
-    }
+//    @Override
+//    public boolean equals(Object obj) {
+//        return EqualsBuilder.reflectionEquals(this, obj, // exclude the following fields
+//                List.of("minPlayers", "maxPlayers", "maxPlayTime", "minPlayTime", "difficulty",
+//                        "rank", "averageRating", "yearPublished"));
+//    }
 
     /**
      * Get the hash code of the object.
@@ -227,13 +229,38 @@ public class BoardGame {
      * 
      * @return hash code of the object
      */
+//    @Override
+//    public int hashCode() {
+//        return HashCodeBuilder.reflectionHashCode(this, // exclude the following fields
+//                List.of( "minPlayers", "maxPlayers", "maxPlayTime", "minPlayTime", "difficulty",
+//                        "rank", "averageRating", "yearPublished", "name", "id"));
+//    }
+
     @Override
-    public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this, // exclude the following fields
-                List.of("minPlayers", "maxPlayers", "maxPlayTime", "minPlayTime", "difficulty",
-                        "rank", "averageRating", "yearPublished"));
+    public boolean equals(Object obj) {
+        if (this == obj) return true; // Same reference, so they are equal
+        if (obj == null || getClass() != obj.getClass()) return false; // Type mismatch
+
+        BoardGame other = (BoardGame) obj; // Safe cast
+
+        // Compare each field for equality
+        return Objects.equals(this.name, other.name) &&
+                this.id == other.id &&
+                this.minPlayers == other.minPlayers &&
+                this.maxPlayers == other.maxPlayers &&
+                this.minPlayTime == other.minPlayTime &&
+                this.maxPlayTime == other.maxPlayTime &&
+                Double.compare(this.difficulty, other.difficulty) == 0 &&
+                this.rank == other.rank &&
+                Double.compare(this.averageRating, other.averageRating) == 0 &&
+                this.yearPublished == other.yearPublished;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, id, minPlayers, maxPlayers, minPlayTime,
+                maxPlayTime, difficulty, rank, averageRating, yearPublished);
+    }
 
     /**
      * Simple main we used for testing.
@@ -253,6 +280,8 @@ public class BoardGame {
         System.out.println(bg.equals(bg) + " " + String.valueOf(bg.hashCode() == bg2.hashCode()));
         System.out.println(bg.equals(bg2) + " " + String.valueOf(bg.hashCode() == bg2.hashCode()));
         System.out.println(bg.equals(bg3) + " " + String.valueOf(bg.hashCode() == bg3.hashCode()));
+
+        System.out.println(bg.hashCode());
 
     }
 
